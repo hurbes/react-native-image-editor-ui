@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ImageURISource, StyleSheet, View } from "react-native";
+import { ImageSourcePropType, StyleSheet, View } from "react-native";
 import { PanGestureHandler, PanGestureHandlerGestureEvent } from "react-native-gesture-handler";
 import Animated, {
   useAnimatedGestureHandler,
@@ -22,11 +22,15 @@ export type Adjustments = {
   height: number;
 };
 
+interface Source {
+  source: ImageSourcePropType;
+}
+
 interface EditBoxProps {
   gridlines?: boolean;
   maxWidth?: number;
   maxHeight?: number;
-  source: ImageURISource & { height: number; width: number };
+  source: Source & { height: number; width: number };
 }
 
 interface EditBoxRefMethods {
@@ -259,11 +263,11 @@ function EditBox({ gridlines = true, maxWidth, maxHeight, source }: EditBoxProps
   return (
     <View style={{ height: imageHeight + 2 * BOX_BORDER, width: imageWidth + 2 * BOX_BORDER }}>
       <Animated.Image
-        source={source}
+        source={source.source}
         style={[styles.image, styles.backgroundImage, imageDimensions, backgroundImageStyle]}
       />
       <Animated.View style={[styles.imageBoundingBox, foregroundImageBoxStyles]}>
-        <Animated.Image source={source} style={[styles.image, imageDimensions, foregroundImageStyle]} />
+        <Animated.Image source={source.source} style={[styles.image, imageDimensions, foregroundImageStyle]} />
         {gridlines && (
           <Gridlines
             topY={boundingBoxRect.topY}
