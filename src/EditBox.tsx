@@ -22,11 +22,11 @@ export type Adjustments = {
   height: number;
 };
 
-interface Source {
+export interface Source {
   source: ImageSourcePropType;
 }
 
-interface EditBoxProps {
+export interface EditBoxProps {
   gridlines?: boolean;
   maxWidth?: number;
   maxHeight?: number;

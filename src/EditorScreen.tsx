@@ -1,22 +1,12 @@
 import * as React from "react";
-import {
-  Dimensions,
-  Image,
-  ImageURISource,
-  Pressable,
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Dimensions, Image, Pressable, SafeAreaView, StatusBar, StyleSheet, Text, View } from "react-native";
 
-import EditBox, { Adjustments, RotationAngles } from "./EditBox";
+import EditBox, { Adjustments, RotationAngles, Source } from "./EditBox";
 
 interface EditScreenProps {
   onCancel?: () => void;
   onDone: (adjustments: Adjustments) => void;
-  source: ImageURISource & { height: number; width: number };
+  source: Source & { height: number; width: number };
   useBackgroundCover?: boolean;
 }
 
@@ -57,7 +47,7 @@ export default function EditScreen({ onCancel, onDone, source, useBackgroundCove
   return (
     <View style={styles.page}>
       {useBackgroundCover && (
-        <Image blurRadius={28} resizeMode="cover" source={source} style={styles.backgroundCover} />
+        <Image blurRadius={28} resizeMode="cover" source={source.source} style={styles.backgroundCover} />
       )}
       <SafeAreaView style={styles.safeArea}>
         <StatusBar barStyle="light-content" />
