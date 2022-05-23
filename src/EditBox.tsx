@@ -264,10 +264,15 @@ function EditBox({ gridlines = true, maxWidth, maxHeight, source }: EditBoxProps
     <View style={{ height: imageHeight + 2 * BOX_BORDER, width: imageWidth + 2 * BOX_BORDER }}>
       <Animated.Image
         source={source.source}
+        resizeMode="contain"
         style={[styles.image, styles.backgroundImage, imageDimensions, backgroundImageStyle]}
       />
       <Animated.View style={[styles.imageBoundingBox, foregroundImageBoxStyles]}>
-        <Animated.Image source={source.source} style={[styles.image, imageDimensions, foregroundImageStyle]} />
+        <Animated.Image
+          source={source.source}
+          style={[styles.image, imageDimensions, foregroundImageStyle]}
+          resizeMode="contain"
+        />
         {gridlines && (
           <Gridlines
             topY={boundingBoxRect.topY}
